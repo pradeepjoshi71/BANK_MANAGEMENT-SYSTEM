@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Management System</title>
+    <style>
+        body { font-family: Arial; background:#f4f4f4; padding:20px }
+        input, button { padding:8px; margin:5px }
+        div { background:#fff; padding:20px; width:300px }
+    </style>
+</head>
+<body>
+
+<h2>🏦 Bank Management System</h2>
+
+<div>
+    <h3>Create Account</h3>
+    <input id="name" placeholder="Name"><br>
+    <input id="balance" placeholder="Initial Balance"><br>
+    <button onclick="createAccount()">Create</button>
+</div>
+
+<script>
+function createAccount() {
+    fetch("/create", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            name: document.getElementById("name").value,
+            balance: document.getElementById("balance").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => alert(data.message));
+}
+</script>
+
+</body>
+</html>
+
